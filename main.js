@@ -4,8 +4,6 @@ import datos from './config/config.json' assert {
 
 (function(){
 
-    const texto = "dato";
-
     const id = datos.data.id;
     const apikey = datos.data.apikey;
     const serverUrl = datos.data.serverUrl;
