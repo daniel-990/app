@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="./main.css">
+    </head>
+  <body>
+    
+    <section id="contenedor-prpal1">
+        <div class="container">
+            <h3><i class="bi bi-terminal-plus"></i> | Registro de datos | <a href="/" class="btn btn-danger"><i class="bi bi-rewind-fill"></i></a></h3>
+            <hr>
+            <form>
+                <div class="mb-3">
+                  <label for="titulo-portafolio" class="form-label"><i class="bi bi-tag-fill"></i> | Nombre</label>
+                  <input type="text" class="form-control" id="titulo-portafolio" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="contenido-portafolio" class="form-label"><i class="bi bi-tablet-landscape"></i> | Mensaje</label>
+                  <textarea class="form-control" id="contenido-portafolio" cols="30" rows="10"></textarea>
+                </div>
+                <input type="button" id="enviar" value="enviar" class="btn btn-warning">
+            </form>
+        </div>
+    </section>
+
+    <section id="contenedor-prpal2">
+      <div class="container" id="render"></div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/parse@4.0.1/dist/parse.min.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
