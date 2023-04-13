@@ -68,8 +68,24 @@ import datos from './config/config.json' assert {
         }
     }
 
+    //crear usuarios
+    const crearUser = () => {
+        // Create a new instance of the user class
+        var user = new Parse.User();
+        user.set("username", "nombre"); //obligatorio
+        user.set("password", "pass");   //obligatorio
+        user.set("email", "correo@example.com");
+    
+        user.signUp().then(function(user) {
+            console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+        }).catch(function(error){
+            console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
     //funciones
     btnEnviar.addEventListener('click', guardarDatos);
     mostarDatos();
+    crearUser();
 
 })();
