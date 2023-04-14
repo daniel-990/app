@@ -9,6 +9,7 @@ import datos from './config/config.json' assert {
     const serverUrl = datos.data.serverUrl;
 
     const render = document.getElementById("render");
+    const crearUserBtn = document.getElementById("crearUser");
 
     //parse
     Parse.initialize(id, apikey); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
@@ -70,22 +71,36 @@ import datos from './config/config.json' assert {
 
     //crear usuarios
     const crearUser = () => {
-        // Create a new instance of the user class
-        var user = new Parse.User();
-        user.set("username", "nombre"); //obligatorio
-        user.set("password", "pass");   //obligatorio
-        user.set("email", "correo@example.com");
-    
-        user.signUp().then(function(user) {
-            console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
-        }).catch(function(error){
-            console.log("Error: " + error.code + " " + error.message);
-        });
+
+        const nombre = prompt('Ingrese su nombre');
+        const pass = prompt('Ingrese su contraseña');
+        const correo = prompt('Ingrese su correo');
+
+        if(nombre == "" || pass == "" || correo == ""){
+            alert("Todos los campos son obligatorios");
+        }else{
+            // Create a new instance of the user class
+            var user = new Parse.User();
+            user.set("username", nombre); //obligatorio
+            user.set("password", pass);   //obligatorio
+            user.set("email", correo);
+        
+            user.signUp().then(function(user) {
+                console.log('registro exitoso: ' + user.get("username") + ' email: ' + user.get("email"));
+                alert("registro exitoso: " + user.get("username"))
+            }).catch(function(error){
+                console.log("Error: " + error.code + " " + error.message);
+                alert("Error: " + error.code + " " + error.message);
+            });
+        }
+
     }
 
     //funciones
     btnEnviar.addEventListener('click', guardarDatos);
+    crearUserBtn.addEventListener('click',crearUser);
+
     mostarDatos();
-    crearUser();
+    
 
 })();
