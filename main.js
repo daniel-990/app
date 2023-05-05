@@ -10,6 +10,7 @@ import datos from './config/config.json' assert {
 
     const render = document.getElementById("render");
     const crearUserBtn = document.getElementById("crearUser");
+    const login = document.getElementById("iniciarSesion");
 
     //parse
     Parse.initialize(id, apikey); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
@@ -69,25 +70,25 @@ import datos from './config/config.json' assert {
         }
     }
 
-    //crear usuarios
+    //crear usuarios 
     const crearUser = () => {
 
-        const nombre = prompt('Ingrese su nombre');
+        const nombre = prompt('Ingrese su correo');
+        const correo = prompt('Confime su correo');
         const pass = prompt('Ingrese su contraseña');
-        const correo = prompt('Ingrese su correo');
 
         if(nombre == "" || pass == "" || correo == ""){
-            alert("Todos los campos son obligatorios");
+            alert("Todos los campos son obligatorios *");
         }else{
             // Create a new instance of the user class
             var user = new Parse.User();
             user.set("username", nombre); //obligatorio
             user.set("password", pass);   //obligatorio
-            user.set("email", correo);
+            user.set("email", correo); //obligatorio
         
             user.signUp().then(function(user) {
                 console.log('registro exitoso: ' + user.get("username") + ' email: ' + user.get("email"));
-                alert("registro exitoso: " + user.get("username"))
+                alert("registro exitoso: " + user.get("username"));
             }).catch(function(error){
                 console.log("Error: " + error.code + " " + error.message);
                 alert("Error: " + error.code + " " + error.message);
@@ -96,11 +97,24 @@ import datos from './config/config.json' assert {
 
     }
 
+    //login
+    const loginApp = () => {
+
+        const nombre = prompt('Ingrese su correo');
+        const pass = prompt('Ingrese su contraseña');
+
+        const user = Parse.User.logIn(nombre, pass).then(function(user) {
+            console.log('User created successful with name: ' + user.get("username") + ' and email: ' + user.get("email"));
+            mostarDatos();
+        }).catch(function(error){
+            console.log("Error en el login: " + error.code + " " + error.message);
+        });
+    }
+
     //funciones
     btnEnviar.addEventListener('click', guardarDatos);
     crearUserBtn.addEventListener('click',crearUser);
-
-    mostarDatos();
+    login.addEventListener('click', loginApp);
     
 
 })();
